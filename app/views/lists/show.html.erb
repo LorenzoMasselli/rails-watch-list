@@ -1,0 +1,29 @@
+<nav class="navbar navbar-light bg-light px-5">
+  <i class="fa-solid fa-film"></i>
+  <form class="form-inline pull-right">
+    <%= link_to "Home", lists_path, class: "btn btn-outline-success my-2 my-sm-0" %>
+    <%= link_to "add bookmark", new_list_bookmark_path(@list), class: "btn btn-outline-success my-2 my-sm-0" %>
+  </form>
+</nav>
+
+  <div class="row m-4">
+       <% @list.movies.each do |movie| %>
+       <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+        <div class="col-3 m-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= movie.title %></h5>
+              <p class="card-subtitle"><%= movie.overview %></p>
+              <p class="card-text"><%= bookmark.comment %></p>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-3">
+                <%= link_to "Delete", list_path(movie), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger mb-2" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>

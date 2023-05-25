@@ -1,18 +1,12 @@
 Rails.application.routes.draw do
-  get 'lists/name'
-  get 'movies/new'
-  get 'movies/create'
-  get 'movies/index'
-  get 'movies/update'
-  get 'movies/destroy'
-  get 'movies/show'
-  get 'movies/edit'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root to: "lists#index"
+  resources :lists do
+    resources :bookmarks, only: [:new, :create]
+  end
 
-  resources :movies
-
-  resources :lists
+  resources :bookmarks, only: :destroy
 end
