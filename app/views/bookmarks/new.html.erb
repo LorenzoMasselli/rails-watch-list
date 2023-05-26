@@ -9,8 +9,8 @@
 </div>
 <div class="container w-50">
     <%= simple_form_for [@list, @bookmark] do |f| %>
-          <%= f.input :comment, placeholder: 'Enter a comment' %>
           <%= f.association :movie, prompt: "Choose a movie" %>
+          <%= f.input :comment, placeholder: 'Enter a comment' %>
           <%= f.submit class: "btn btn-flat" %>
     <% end %>
 </div>

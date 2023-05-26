@@ -1,25 +1,19 @@
 <nav class="navbar navbar-light bg-light px-5">
-  <i class="fa-solid fa-film"></i>
+  <%= link_to lists_path do %>
+    <i class="fa-solid fa-film" style="color: green;"></i>
+    <% end %>
   <form class="form-inline">
-    <%= link_to "Add list", new_list_path, class: "btn btn-outline-success my-2 my-sm-0" %>
+    <%= link_to "Add list", new_list_path, class: "btn btn-outline-success my-2 my-sm-0", style: "green" %>
   </form>
 </nav>
-<div class="container m-4">
-<h1 class="m-4">Lists</h1>
-  <table class="table m-4">
-    <thead>
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-      <% @lists.each do |list| %>
-        <th scope="row"><%= list.id %></th>
-        <td><%= link_to list.name, list_path(list) %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+
+<div class="row m-2">
+  <% @lists.each do |list| %>
+  <div class="card m-2" style="width: 18rem;">
+    <img class="card-img-top " src=<%= cl_image_path list.photo.key, height: 300, crop: :fill %> alt="Card image cap">
+    <div class="card-body text-center">
+      <%= link_to list.name, list_path(list), class: "btn btn-primary"  %>
+    </div>
+  </div>
+  <% end %>
 </div>
